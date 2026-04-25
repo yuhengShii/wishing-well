@@ -138,9 +138,9 @@ onMounted(() => {
   position: fixed;
   top: 24px;
   right: 16px;
-  font-size: 14px;
+  font-size: 13px;
   color: #4a90e2;
-  padding: 4px 12px;
+  padding: 6px 14px;
   border: 1px solid #4a90e2;
   border-radius: 14px;
   z-index: 100;
@@ -148,11 +148,11 @@ onMounted(() => {
 
 .fab {
   position: fixed;
-  right: 24px;
-  bottom: 120px;
-  width: 56px;
-  height: 56px;
-  border-radius: 28px;
+  right: 20px;
+  bottom: 80px;
+  width: 54px;
+  height: 54px;
+  border-radius: 27px;
   background: #4a90e2;
   display: flex;
   align-items: center;
@@ -160,7 +160,7 @@ onMounted(() => {
   box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
 
   .fab-text {
-    font-size: 32px;
+    font-size: 30px;
     color: #fff;
     font-weight: 300;
   }
@@ -169,24 +169,24 @@ onMounted(() => {
 .sort-bar {
   display: flex;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 
   .sort-label {
-    font-size: 14px;
-    color: #666;
-    margin-right: 8px;
+    font-size: 16px;
+    color: #555;
+    margin-right: 10px;
   }
 
   .sort-tabs {
     display: flex;
-    gap: 8px;
+    gap: 10px;
   }
 
   .sort-tab {
     font-size: 14px;
-    color: #999;
-    padding: 4px 12px;
-    border-radius: 14px;
+    color: #888;
+    padding: 6px 16px;
+    border-radius: 16px;
     background: #e8e8e8;
 
     &.active {
@@ -198,41 +198,42 @@ onMounted(() => {
 
 .list {
   .list-title {
-    font-size: 18px;
+    font-size: 22px;
     font-weight: bold;
     color: #333;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     display: block;
   }
 
   .empty {
     text-align: center;
     color: #999;
-    padding: 40px 0;
+    font-size: 17px;
+    padding: 80px 0;
   }
 }
 
 .card {
   background: #fff;
-  border-radius: 10px;
-  padding: 14px;
-  margin-bottom: 10px;
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 14px;
 
   .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 6px;
+    margin-bottom: 10px;
 
     .card-title {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 600;
       color: #333;
     }
 
     .card-status {
       font-size: 12px;
-      padding: 2px 8px;
+      padding: 3px 10px;
       border-radius: 10px;
 
       &.status-pending { background: #fff3e0; color: #e67e22; }
@@ -244,46 +245,47 @@ onMounted(() => {
 
   .card-desc {
     display: block;
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 8px;
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 12px;
+    line-height: 1.5;
   }
 
   .card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 
     .tag {
-      font-size: 12px;
+      font-size: 13px;
       background: #f0f4ff;
       color: #4a90e2;
-      padding: 2px 8px;
-      border-radius: 6px;
+      padding: 3px 12px;
+      border-radius: 12px;
     }
 
     .card-time {
-      font-size: 12px;
-      color: #bbb;
+      font-size: 13px;
+      color: #999;
     }
   }
 
   .vote-bar {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding-top: 8px;
+    gap: 10px;
+    padding-top: 12px;
     border-top: 1px solid #f0f0f0;
 
     .vote-btn {
-      font-size: 14px;
-      padding: 4px 14px;
-      border-radius: 16px;
+      font-size: 15px;
+      padding: 6px 16px;
+      border-radius: 18px;
       background: #fff3f3;
       color: #e74c3c;
       border: 1px solid #fdd;
-      line-height: 1.6;
+      line-height: 1.5;
 
       &.voted {
         background: #fdeaea;
@@ -292,8 +294,8 @@ onMounted(() => {
     }
 
     .vote-hint {
-      font-size: 12px;
-      color: #bbb;
+      font-size: 13px;
+      color: #aaa;
     }
   }
 }

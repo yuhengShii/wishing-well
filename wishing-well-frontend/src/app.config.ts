@@ -25,11 +25,11 @@ export default defineAppConfig({
       },
       {
         pagePath: "pages/my-wishes/index",
-        text: "我的愿望",
+        text: "愿望",
       },
       {
         pagePath: "pages/my-votes/index",
-        text: "我的投票",
+        text: "投票",
       },
       {
         pagePath: "pages/categories/index",
