@@ -108,6 +108,33 @@
 
 ---
 
+## 前端页面重构（5 Tab）
+
+**目标**：从单页到多 Tab 架构，提升用户体验和代码组织。
+
+### 页面规划
+
+| 页面 | 路径 | 功能 |
+|------|------|------|
+| 首页（index）| pages/index/index | 愿望列表 + 发布表单 + 排序切换 |
+| 我的愿望（my-wishes）| pages/my-wishes/index | 我提交的愿望列表 + 状态跟踪 |
+| 我的投票（my-votes）| pages/my-votes/index | 我支持的愿望列表 |
+| 分类（categories）| pages/categories/index | 按分类浏览愿望 |
+| 我的（profile）| pages/profile/index | 用户信息 + 设置（语言切换）|
+
+### 技术实现
+
+- [ ] 配置 Taro tabBar（5个 Tab）
+- [ ] 拆分首页为独立 Tab 页面
+- [ ] 新增 pages/my-wishes/ 页面
+- [ ] 新增 pages/my-votes/ 页面
+- [ ] 新增 pages/categories/ 页面
+- [ ] 新增 pages/profile/ 页面
+- [ ] 统一 API 调用层（api/）
+- [ ] 统一 i18n 国际化
+
+---
+
 ## 附录：已完成的附加功能
 
 ### 中英文切换（已完成）
