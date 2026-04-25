@@ -1,6 +1,7 @@
 export default defineAppConfig({
   pages: [
     "pages/index/index",
+    "pages/add-wish/index",
     "pages/my-wishes/index",
     "pages/my-votes/index",
     "pages/categories/index",

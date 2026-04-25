@@ -116,17 +116,28 @@
 
 | 页面 | 路径 | 功能 |
 |------|------|------|
-| 首页（index）| pages/index/index | 愿望列表 + 发布表单 + 排序切换 |
+| 首页（index）| pages/index/index | 愿望列表 + 排序切换 |
+| 添加愿望（add-wish）| pages/add-wish/index | 独立的添加愿望表单 |
 | 我的愿望（my-wishes）| pages/my-wishes/index | 我提交的愿望列表 + 状态跟踪 |
 | 我的投票（my-votes）| pages/my-votes/index | 我支持的愿望列表 |
 | 分类（categories）| pages/categories/index | 按分类浏览愿望 |
 | 我的（profile）| pages/profile/index | 用户信息 + 设置（语言切换）|
 
+### TabBar 改造
+
+- [ ] 中间加号按钮（突出"发布愿望"入口）
+- [ ] 加号点击跳转到添加愿望页
+
 ### 技术实现
 
-- [ ] 配置 Taro tabBar（5个 Tab）
-- [ ] 拆分首页为独立 Tab 页面
-- [ ] 新增 pages/my-wishes/ 页面
+- [x] 配置 Taro tabBar（5个 Tab）
+- [x] 拆分首页为独立 Tab 页面
+- [x] 新增 pages/my-wishes/ 页面
+- [x] 新增 pages/my-votes/ 页面
+- [x] 新增 pages/categories/ 页面
+- [x] 新增 pages/profile/ 页面
+- [ ] 新增 pages/add-wish/ 页面
+- [ ] TabBar 中间加号按钮
 - [ ] 新增 pages/my-votes/ 页面
 - [ ] 新增 pages/categories/ 页面
 - [ ] 新增 pages/profile/ 页面

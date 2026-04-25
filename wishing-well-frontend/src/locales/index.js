@@ -42,6 +42,10 @@ const messages = {
     },
     loadFailed: '加载失败，请检查后端',
     language: 'EN',
+    addWish: {
+      title: '发布愿望',
+      cancel: '取消',
+    },
     myWishes: {
       title: '我的愿望',
       empty: '您还没有提交过愿望',
@@ -100,6 +104,10 @@ const messages = {
     },
     loadFailed: 'Failed to load, please check backend',
     language: '中文',
+    addWish: {
+      title: 'Submit Wish',
+      cancel: 'Cancel',
+    },
     myWishes: {
       title: 'My Wishes',
       empty: 'You have not submitted any wishes yet',

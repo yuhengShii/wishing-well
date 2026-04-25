@@ -1,34 +1,8 @@
 <template>
   <view class="page" :key="localeState.locale">
-    <view class="header">
-      <view class="header-top">
-        <view class="header-text">
-          <text class="title">{{ t('app.title') }}</text>
-          <text class="subtitle">{{ t('app.subtitle') }}</text>
-        </view>
-        <text class="lang-btn" @tap="toggleLocale">{{ t('language') }}</text>
-      </view>
-    </view>
-
-    <!-- 发布愿望 -->
-    <view class="form">
-      <input
-        class="input"
-        v-model="form.title"
-        :placeholder="t('form.titlePlaceholder')"
-        maxlength="50"
-      />
-      <textarea
-        class="textarea"
-        v-model="form.description"
-        :placeholder="t('form.descPlaceholder')"
-        maxlength="500"
-      />
-      <view class="row">
-        <input class="input-small" v-model="form.category" :placeholder="t('form.categoryPlaceholder')" />
-        <input class="input-small" v-model="form.contact" :placeholder="t('form.contactPlaceholder')" />
-      </view>
-      <button class="btn-primary" @tap="submitWish">{{ t('form.submitButton') }}</button>
+    <!-- 浮动添加按钮 -->
+    <view class="fab" @tap="goToAddWish">
+      <text class="fab-text">+</text>
     </view>
 
     <!-- 排序切换 -->
@@ -84,9 +58,8 @@
 import { ref, reactive, onMounted } from "vue";
 import Taro from "@tarojs/taro";
 import { wishApi } from "../../api/wish";
-import { t, toggleLocale, localeState } from "../../locales";
+import { t, localeState } from "../../locales";
 
-const form = ref({ title: "", description: "", category: "", contact: "" });
 const wishes = ref([]);
 const sort = ref("latest");
 const votedMap = reactive({});
@@ -138,24 +111,12 @@ function switchSort(newSort) {
   fetchWishes();
 }
 
-async function submitWish() {
-  if (!form.value.title?.trim()) {
-    Taro.showToast({ title: t('form.titleRequired'), icon: "none" });
-    return;
-  }
-  try {
-    await wishApi.create({ ...form.value });
-    Taro.showToast({ title: t('form.submitSuccess'), icon: "success" });
-    Object.assign(form.value, { title: "", description: "", category: "", contact: "" });
-    fetchWishes();
-  } catch (e) {
-    console.error("提交失败:", e);
-    Taro.showToast({ title: t('form.submitFailed'), icon: "none" });
-  }
-}
-
 function formatTime(time) {
   return time ? time.slice(0, 10) : "";
+}
+
+function goToAddWish() {
+  Taro.navigateTo({ url: '/pages/add-wish/index' });
 }
 
 onMounted(() => {
@@ -170,92 +131,23 @@ onMounted(() => {
   min-height: 100vh;
 }
 
-.header {
-  margin-bottom: 24px;
+.fab {
+  position: fixed;
+  right: 24px;
+  bottom: 120px;
+  width: 56px;
+  height: 56px;
+  border-radius: 28px;
+  background: #4a90e2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
 
-  .header-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-
-  .header-text {
-    flex: 1;
-  }
-
-  .title {
-    display: block;
-    font-size: 28px;
-    font-weight: bold;
-    color: #333;
-  }
-
-  .subtitle {
-    display: block;
-    font-size: 14px;
-    color: #999;
-    margin-top: 4px;
-  }
-
-  .lang-btn {
-    font-size: 14px;
-    color: #4a90e2;
-    padding: 4px 12px;
-    border: 1px solid #4a90e2;
-    border-radius: 14px;
-  }
-}
-
-.form {
-  background: #fff;
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 16px;
-
-  .input {
-    border: 1px solid #eee;
-    border-radius: 8px;
-    padding: 10px 12px;
-    font-size: 15px;
-    margin-bottom: 10px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .textarea {
-    border: 1px solid #eee;
-    border-radius: 8px;
-    padding: 10px 12px;
-    font-size: 15px;
-    margin-bottom: 10px;
-    width: 100%;
-    box-sizing: border-box;
-    height: 80px;
-    resize: none;
-  }
-
-  .row {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-
-    .input-small {
-      flex: 1;
-      border: 1px solid #eee;
-      border-radius: 8px;
-      padding: 10px 12px;
-      font-size: 15px;
-    }
-  }
-
-  .btn-primary {
-    width: 100%;
-    background: #4a90e2;
+  .fab-text {
+    font-size: 32px;
     color: #fff;
-    border-radius: 8px;
-    padding: 12px;
-    font-size: 16px;
-    border: none;
+    font-weight: 300;
   }
 }
 
