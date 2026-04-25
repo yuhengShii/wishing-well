@@ -42,6 +42,25 @@ const messages = {
     },
     loadFailed: '加载失败，请检查后端',
     language: 'EN',
+    myWishes: {
+      title: '我的愿望',
+      empty: '您还没有提交过愿望',
+    },
+    myVotes: {
+      title: '我的投票',
+      empty: '您还没有支持过任何愿望',
+    },
+    categories: {
+      title: '分类浏览',
+      empty: '该分类下暂无愿望',
+    },
+    profile: {
+      title: '我的',
+      guest: '游客',
+      myWishesCount: '我的愿望',
+      myVotesCount: '我的投票',
+      language: '语言',
+    },
   },
   en: {
     app: {
@@ -81,6 +100,25 @@ const messages = {
     },
     loadFailed: 'Failed to load, please check backend',
     language: '中文',
+    myWishes: {
+      title: 'My Wishes',
+      empty: 'You have not submitted any wishes yet',
+    },
+    myVotes: {
+      title: 'My Votes',
+      empty: 'You have not supported any wishes yet',
+    },
+    categories: {
+      title: 'Categories',
+      empty: 'No wishes in this category',
+    },
+    profile: {
+      title: 'Profile',
+      guest: 'Guest',
+      myWishesCount: 'My Wishes',
+      myVotesCount: 'My Votes',
+      language: 'Language',
+    },
   },
 }
 

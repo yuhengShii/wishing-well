@@ -1,5 +1,5 @@
 <template>
-  <view class="page">
+  <view class="page" :key="localeState.locale">
     <view class="header">
       <view class="header-top">
         <view class="header-text">
@@ -84,7 +84,7 @@
 import { ref, reactive, onMounted } from "vue";
 import Taro from "@tarojs/taro";
 import { wishApi } from "../../api/wish";
-import { t, toggleLocale } from "../../locales";
+import { t, toggleLocale, localeState } from "../../locales";
 
 const form = ref({ title: "", description: "", category: "", contact: "" });
 const wishes = ref([]);
