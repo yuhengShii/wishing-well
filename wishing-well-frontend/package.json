@@ -1,0 +1,40 @@
+{
+  "name": "wishing-well-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:weapp": "taro build --type weapp && node scripts/fix-project-config.js",
+    "build:weapp": "taro build --type weapp --watch",
+    "doctor": "taro doctor"
+  },
+  "dependencies": {
+    "@tarojs/components": "4.x",
+    "@tarojs/plugin-framework-vue3": "4.x",
+    "@tarojs/plugin-platform-weapp": "4.x",
+    "@tarojs/runtime": "4.x",
+    "@tarojs/taro": "4.x",
+    "@vue/compiler-core": "^3.4.0",
+    "@vue/compiler-dom": "^3.4.0",
+    "@vue/reactivity": "^3.4.0",
+    "@vue/runtime-core": "^3.4.0",
+    "@vue/runtime-dom": "^3.4.0",
+    "@vue/server-renderer": "^3.4.0",
+    "@vue/shared": "^3.4.0",
+    "vue": "^3.4.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.0",
+    "@babel/preset-env": "^7.29.2",
+    "@babel/preset-typescript": "^7.28.5",
+    "@tarojs/cli": "4.x",
+    "@tarojs/webpack5-runner": "4.x",
+    "@vue/compiler-sfc": "^3.4.0",
+    "babel-plugin-import": "^1.13.8",
+    "css-loader": "^6.10.0",
+    "sass": "^1.77.0",
+    "sass-loader": "^13.3.3",
+    "typescript": "^6.0.3",
+    "vue-loader": "^17.4.2",
+    "webpack": "5.91.0"
+  }
+}
