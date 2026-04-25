@@ -1,8 +1,11 @@
 <template>
   <view class="page" :key="localeState.locale">
-    <!-- 浮动添加按钮 -->
+    <!-- 浮动按钮 -->
     <view class="fab" @tap="goToAddWish">
       <text class="fab-text">+</text>
+    </view>
+    <view class="lang-btn-fixed" @tap="toggleLocale">
+      <text>{{ t('language') }}</text>
     </view>
 
     <!-- 排序切换 -->
@@ -58,7 +61,7 @@
 import { ref, reactive, onMounted } from "vue";
 import Taro from "@tarojs/taro";
 import { wishApi } from "../../api/wish";
-import { t, localeState } from "../../locales";
+import { t, localeState, toggleLocale } from "../../locales";
 
 const wishes = ref([]);
 const sort = ref("latest");
@@ -129,6 +132,18 @@ onMounted(() => {
   padding: 24px 16px;
   background: #f5f5f5;
   min-height: 100vh;
+}
+
+.lang-btn-fixed {
+  position: fixed;
+  top: 24px;
+  right: 16px;
+  font-size: 14px;
+  color: #4a90e2;
+  padding: 4px 12px;
+  border: 1px solid #4a90e2;
+  border-radius: 14px;
+  z-index: 100;
 }
 
 .fab {

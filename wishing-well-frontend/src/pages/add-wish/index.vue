@@ -2,6 +2,9 @@
   <view class="page" :key="localeState.locale">
     <view class="header">
       <text class="title">{{ t('addWish.title') }}</text>
+      <view class="header-right">
+        <text class="lang-btn" @tap="toggleLocale">{{ t('language') }}</text>
+      </view>
     </view>
 
     <!-- 发布愿望 -->
@@ -19,7 +22,9 @@
         maxlength="500"
       />
       <view class="row">
-        <input class="input-small" v-model="form.category" :placeholder="t('form.categoryPlaceholder')" />
+        <picker class="picker" mode="selector" :range="categories" :value="categoryIndex" @change="onCategoryChange">
+          <view class="picker-text">{{ form.category || t('form.categoryPlaceholder') }}</view>
+        </picker>
         <input class="input-small" v-model="form.contact" :placeholder="t('form.contactPlaceholder')" />
       </view>
       <button class="btn-primary" @tap="submitWish">{{ t('form.submitButton') }}</button>
@@ -32,9 +37,17 @@
 import { ref, onMounted } from "vue";
 import Taro from "@tarojs/taro";
 import { wishApi } from "../../api/wish";
-import { t, localeState } from "../../locales";
+import { t, localeState, toggleLocale } from "../../locales";
+
+const categories = ["生活", "工作", "学习", "健康", "娱乐", "其他", "财务", "社交", "旅行", "科技", "家居", "技能", "情感", "美食", "运动", "公益"];
+const categoryIndex = ref(0);
 
 const form = ref({ title: "", description: "", category: "", contact: "" });
+
+function onCategoryChange(e) {
+  categoryIndex.value = e.detail.value;
+  form.value.category = categories[e.detail.value];
+}
 
 async function submitWish() {
   if (!form.value.title?.trim()) {
@@ -73,12 +86,25 @@ onMounted(() => {
 }
 
 .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 24px;
 
   .title {
     font-size: 24px;
     font-weight: bold;
     color: #333;
+  }
+
+  .header-right {
+    .lang-btn {
+      font-size: 14px;
+      color: #4a90e2;
+      padding: 4px 12px;
+      border: 1px solid #4a90e2;
+      border-radius: 14px;
+    }
   }
 }
 
@@ -113,6 +139,19 @@ onMounted(() => {
     display: flex;
     gap: 10px;
     margin-bottom: 10px;
+
+    .picker {
+      flex: 1;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 15px;
+      background: #fff;
+
+      .picker-text {
+        color: #999;
+      }
+    }
 
     .input-small {
       flex: 1;
