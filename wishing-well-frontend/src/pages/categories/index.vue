@@ -46,7 +46,7 @@ import Taro, { useDidShow } from "@tarojs/taro";
 import { wishApi } from "../../api/wish";
 import { t, localeState } from "../../locales";
 
-const categories = ["全部", "生活", "工作", "学习", "健康", "娱乐", "其他"];
+const categories = ["全部", "生活", "工作", "学习", "健康", "娱乐", "其他", "财务", "社交", "旅行", "科技", "家居", "技能", "情感", "美食", "运动", "公益"];
 const selectedCategory = ref("全部");
 const allWishes = ref([]);
 
