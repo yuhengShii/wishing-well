@@ -9,6 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 1. **每次只做一个功能点**，不并行开发多个功能
 2. **当前功能点端到端验证通过后，才能开始下一个**（必须实际运行验证）
 3. **不借机顺手重构其他功能**（功能开发与重构分开）
+4. **代码完成后必须通过 lint 检查**，后才能提交
 
 ## 项目概述
 
