@@ -27,10 +27,11 @@ class Vote(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     wish_id = Column(Integer, ForeignKey("wishes.id"), nullable=False)
-    client_id = Column(String(100), nullable=False)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
     wish = relationship("Wish", back_populates="votes")
+    user = relationship("User")
 
 
 class User(Base):

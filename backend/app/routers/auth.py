@@ -6,6 +6,7 @@ import secrets
 from ..database import get_db
 from ..models import User
 from ..core.config import settings
+from ..core.auth import set_token_user
 
 router = APIRouter(prefix="/auth", tags=["认证"])
 
@@ -69,6 +70,8 @@ def login(code: str, db: Session = Depends(get_db)):
 
     # 生成 token
     token = generate_token()
+    # 保存 token 与用户的映射
+    set_token_user(token, user.id)
 
     return {
         "token": token,

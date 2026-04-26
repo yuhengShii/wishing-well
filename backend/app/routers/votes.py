@@ -1,34 +1,29 @@
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from ..database import get_db
-from ..models import Wish, Vote
+from ..models import Wish, Vote, User
+from ..core.auth import get_current_user
 
 router = APIRouter(prefix="/wishes", tags=["投票"])
 
 
-def get_client_id(request: Request) -> str:
-    """获取客户端标识，优先从请求头获取，未登录状态下使用 IP"""
-    return request.headers.get("X-Client-ID", request.client.host)
-
-
 @router.post("/{wish_id}/vote")
-def vote_wish(wish_id: int, request: Request, db: Session = Depends(get_db)):
+def vote_wish(wish_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
     """对愿望投票，每人每愿望限投一票"""
     wish = db.query(Wish).filter(Wish.id == wish_id, Wish.is_deleted == False).first()
     if not wish:
         raise HTTPException(status_code=404, detail="愿望不存在")
 
-    client_id = get_client_id(request)
     existing = (
         db.query(Vote)
-        .filter(Vote.wish_id == wish_id, Vote.client_id == client_id)
+        .filter(Vote.wish_id == wish_id, Vote.user_id == current_user.id)
         .first()
     )
     if existing:
         raise HTTPException(status_code=400, detail="已经投过票了")
 
-    vote = Vote(wish_id=wish_id, client_id=client_id)
+    vote = Vote(wish_id=wish_id, user_id=current_user.id)
     db.add(vote)
     wish.vote_count += 1
     db.commit()
@@ -36,16 +31,15 @@ def vote_wish(wish_id: int, request: Request, db: Session = Depends(get_db)):
 
 
 @router.delete("/{wish_id}/vote")
-def unvote_wish(wish_id: int, request: Request, db: Session = Depends(get_db)):
+def unvote_wish(wish_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
     """取消投票"""
     wish = db.query(Wish).filter(Wish.id == wish_id, Wish.is_deleted == False).first()
     if not wish:
         raise HTTPException(status_code=404, detail="愿望不存在")
 
-    client_id = get_client_id(request)
     vote = (
         db.query(Vote)
-        .filter(Vote.wish_id == wish_id, Vote.client_id == client_id)
+        .filter(Vote.wish_id == wish_id, Vote.user_id == current_user.id)
         .first()
     )
     if not vote:
@@ -58,16 +52,15 @@ def unvote_wish(wish_id: int, request: Request, db: Session = Depends(get_db)):
 
 
 @router.get("/{wish_id}/voted")
-def check_voted(wish_id: int, request: Request, db: Session = Depends(get_db)):
-    """查询当前客户端是否已投过票"""
+def check_voted(wish_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+    """查询当前用户是否已投过票"""
     wish = db.query(Wish).filter(Wish.id == wish_id, Wish.is_deleted == False).first()
     if not wish:
         raise HTTPException(status_code=404, detail="愿望不存在")
 
-    client_id = get_client_id(request)
     voted = (
         db.query(Vote)
-        .filter(Vote.wish_id == wish_id, Vote.client_id == client_id)
+        .filter(Vote.wish_id == wish_id, Vote.user_id == current_user.id)
         .first()
     ) is not None
     return {"voted": voted, "vote_count": wish.vote_count}
