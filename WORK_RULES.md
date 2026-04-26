@@ -34,8 +34,7 @@ cd backend && .\.venv\Scripts\python -m pytest app/tests/ -v
 cd backend && .\.venv\Scripts\python -m uvicorn app.main:app --reload --port 8000
 
 # 3. API 实际调用能通
-# 浏览器访问 http://127.0.0.1:8000/docs
-# 用 Swagger UI 手动点接口验证
+curl http://127.0.0.1:8000/wishes/
 ```
 
 ### 前端验证
@@ -47,9 +46,26 @@ cd wishing-well-frontend && npm run dev:weapp
 # 5. dist/ 目录有输出文件
 ```
 
+### 前后端联调测试（必须）
+
+```bash
+# 6. 启动后端（确认端口未被占用）
+cd backend && .\.venv\Scripts\python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
+
+# 7. 前端构建
+cd wishing-well-frontend && npm run dev:weapp
+
+# 8. 用微信开发者工具导入 dist 目录，验证功能流程
+```
+
 ### 判断标准
 
-同时满足 **pytest 全过 + Taro 编译成功**，视为该功能点完成。微信开发者工具验证（步骤 6）若有环境问题可跳过，前两条必须通过。
+**必须同时满足**：
+1. pytest 全过
+2. Taro 编译成功
+3. 后端 API 实际返回数据（curl 验证）
+
+三步全部通过才视为该功能点完成，可进行 commit。
 
 ---
 
