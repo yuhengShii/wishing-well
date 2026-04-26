@@ -24,7 +24,7 @@ jobs:
           pip install pytest httpx
 
       - name: 后端单元测试
-        run: pytest app/tests/ -v
+        run: cd backend && pytest app/tests/ -v
 
   frontend-build:
     name: 前端构建
