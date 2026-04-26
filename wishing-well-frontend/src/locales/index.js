@@ -65,6 +65,12 @@ const messages = {
       myVotesCount: '我的投票',
       language: '语言',
     },
+    auth: {
+      loginRequired: '请先登录后操作',
+      logining: '登录中...',
+      loginFailed: '登录失败',
+      loginSuccess: '登录成功',
+    },
   },
   en: {
     app: {
@@ -126,6 +132,12 @@ const messages = {
       myWishesCount: 'My Wishes',
       myVotesCount: 'My Votes',
       language: 'Language',
+    },
+    auth: {
+      loginRequired: 'Please login first',
+      logining: 'Logging in...',
+      loginFailed: 'Login failed',
+      loginSuccess: 'Login successful',
     },
   },
 }

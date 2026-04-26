@@ -1,5 +1,4 @@
-import Taro from "@tarojs/taro";
-import { baseUrl } from "../constants";
+import { request } from "../utils/http";
 
 /** 封装所有愿望相关的 API 调用，便于统一管理 */
 export const wishApi = {
@@ -11,20 +10,20 @@ export const wishApi = {
     if (filters && filters.sort) params.set("sort", filters.sort);
     const query = params.toString();
 
-    return Taro.request({
-      url: `${baseUrl}/wishes${query ? "?" + query : ""}`,
+    return request({
+      url: `/wishes${query ? "?" + query : ""}`,
     });
   },
 
   /** 获取单个愿望 */
   get(id) {
-    return Taro.request({ url: `${baseUrl}/wishes/${id}` });
+    return request({ url: `/wishes/${id}` });
   },
 
   /** 创建愿望 */
   create(data) {
-    return Taro.request({
-      url: `${baseUrl}/wishes/`,
+    return request({
+      url: "/wishes/",
       method: "POST",
       data,
     });
@@ -32,8 +31,8 @@ export const wishApi = {
 
   /** 更新愿望 */
   update(id, data) {
-    return Taro.request({
-      url: `${baseUrl}/wishes/${id}`,
+    return request({
+      url: `/wishes/${id}`,
       method: "PUT",
       data,
     });
@@ -41,27 +40,27 @@ export const wishApi = {
 
   /** 删除愿望 */
   delete(id) {
-    return Taro.request({ url: `${baseUrl}/wishes/${id}`, method: "DELETE" });
+    return request({ url: `/wishes/${id}`, method: "DELETE" });
   },
 
   /** 投票 */
   vote(id) {
-    return Taro.request({
-      url: `${baseUrl}/wishes/${id}/vote`,
+    return request({
+      url: `/wishes/${id}/vote`,
       method: "POST",
     });
   },
 
   /** 取消投票 */
   unvote(id) {
-    return Taro.request({
-      url: `${baseUrl}/wishes/${id}/vote`,
+    return request({
+      url: `/wishes/${id}/vote`,
       method: "DELETE",
     });
   },
 
   /** 查询投票状态 */
   checkVoted(id) {
-    return Taro.request({ url: `${baseUrl}/wishes/${id}/voted` });
+    return request({ url: `/wishes/${id}/voted` });
   },
 };

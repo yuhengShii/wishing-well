@@ -62,6 +62,7 @@ import { ref, reactive, onMounted } from "vue";
 import Taro from "@tarojs/taro";
 import { wishApi } from "../../api/wish";
 import { t, localeState, toggleLocale } from "../../locales";
+import { initAuthState, requireLogin } from "../../stores/auth";
 
 const wishes = ref([]);
 const sort = ref("latest");
@@ -89,6 +90,11 @@ async function checkVotedStatus(id) {
 }
 
 async function toggleVote(wish) {
+  // 检查登录状态
+  if (!requireLogin()) {
+    return;
+  }
+
   try {
     if (votedMap[wish.id]) {
       const res = await wishApi.unvote(wish.id);
@@ -123,6 +129,7 @@ function goToAddWish() {
 }
 
 onMounted(() => {
+  initAuthState();
   fetchWishes();
 });
 </script>

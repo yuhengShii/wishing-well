@@ -7,11 +7,11 @@
     <!-- 用户信息卡片 -->
     <view class="user-card">
       <view class="avatar">
-        <text class="avatar-text">{{ userInfo.avatarText }}</text>
+        <text class="avatar-text">{{ authState.isLoggedIn ? (localeState.locale === 'zh' ? '我' : 'I') : '?' }}</text>
       </view>
       <view class="user-info">
-        <text class="nickname">{{ userInfo.nickname || t('profile.guest') }}</text>
-        <text class="user-id" v-if="userInfo.openid">ID: {{ userInfo.openid.slice(0, 8) }}...</text>
+        <text class="nickname">{{ authState.isLoggedIn ? '已登录用户' : t('profile.guest') }}</text>
+        <text class="user-id" v-if="authState.openid">ID: {{ authState.openid.slice(0, 8) }}...</text>
       </view>
     </view>
 
@@ -29,6 +29,10 @@
 
     <!-- 设置列表 -->
     <view class="settings">
+      <view class="setting-item" @tap="handleAuth">
+        <text class="setting-label">{{ authState.isLoggedIn ? '退出登录' : '微信登录' }}</text>
+        <text class="setting-value">></text>
+      </view>
       <view class="setting-item" @tap="toggleLocale">
         <text class="setting-label">{{ t('profile.language') }}</text>
         <text class="setting-value">{{ localeState.locale === 'zh' ? '中文' : 'English' }}</text>
@@ -41,30 +45,32 @@
 import { ref, reactive, onMounted } from "vue";
 import Taro, { useDidShow } from "@tarojs/taro";
 import { t, toggleLocale, localeState } from "../../locales";
-
-const userInfo = reactive({
-  nickname: "",
-  openid: "",
-  avatarText: "?",
-});
+import { initAuthState, authState, login, logout } from "../../stores/auth";
 
 const stats = reactive({
   wishCount: 0,
   voteCount: 0,
 });
 
+async function handleAuth() {
+  if (authState.isLoggedIn) {
+    logout();
+    Taro.showToast({ title: '已退出登录', icon: 'success' });
+  } else {
+    await login();
+  }
+}
+
 function refreshPage() {
   // 强制触发 UI 更新
-  userInfo.avatarText = localeState.locale === 'zh' ? '游' : 'G';
 }
 
 onMounted(() => {
-  userInfo.avatarText = localeState.locale === 'zh' ? '游' : 'G';
+  initAuthState();
 });
 
 useDidShow(() => {
-  const _ = localeState.locale;
-  refreshPage();
+  initAuthState();
 });
 </script>
 
