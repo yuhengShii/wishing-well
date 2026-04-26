@@ -8,6 +8,19 @@
       <text>{{ t('language') }}</text>
     </view>
 
+    <!-- 统计 Banner -->
+    <view class="banner">
+      <view class="banner-item">
+        <text class="banner-num">{{ totalWishes }}</text>
+        <text class="banner-label">愿望总数</text>
+      </view>
+      <view class="banner-divider" />
+      <view class="banner-item">
+        <text class="banner-num">{{ totalVotes }}</text>
+        <text class="banner-label">总投票数</text>
+      </view>
+    </view>
+
     <!-- 排序切换 -->
     <view class="sort-bar">
       <text class="sort-label">{{ t('sort.label') }}</text>
@@ -67,11 +80,16 @@ import { initAuthState, requireLogin } from "../../stores/auth";
 const wishes = ref([]);
 const sort = ref("latest");
 const votedMap = reactive({});
+const totalWishes = ref(0);
+const totalVotes = ref(0);
 
 async function fetchWishes() {
   try {
     const res = await wishApi.list({ sort: sort.value });
     wishes.value = res.data;
+    // 计算统计数据
+    totalWishes.value = res.data.length;
+    totalVotes.value = res.data.reduce((sum, w) => sum + (w.vote_count || 0), 0);
     for (const wish of wishes.value) {
       checkVotedStatus(wish.id);
     }
@@ -136,21 +154,59 @@ onMounted(() => {
 
 <style lang="scss">
 .page {
-  padding: 24px 16px;
-  background: #f5f5f5;
+  padding: var(--spacing-lg) var(--spacing-md);
+  background: var(--color-bg);
   min-height: 100vh;
 }
 
 .lang-btn-fixed {
   position: fixed;
-  top: 24px;
-  right: 16px;
-  font-size: 19px;
-  color: #4a90e2;
+  top: var(--spacing-lg);
+  right: var(--spacing-md);
+  font-size: var(--font-sm);
+  color: var(--color-primary);
   padding: 6px 14px;
-  border: 1px solid #4a90e2;
-  border-radius: 14px;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-lg);
   z-index: 100;
+  background: var(--color-card);
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg) var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  box-shadow: var(--shadow-card);
+
+  .banner-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .banner-num {
+      font-size: var(--font-xxl);
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .banner-label {
+      font-size: var(--font-sm);
+      color: rgba(255, 255, 255, 0.85);
+      margin-top: 4px;
+    }
+  }
+
+  .banner-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 0 var(--spacing-md);
+  }
 }
 
 .fab {
@@ -160,11 +216,11 @@ onMounted(() => {
   width: 54px;
   height: 54px;
   border-radius: 27px;
-  background: #4a90e2;
+  background: var(--color-primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+  box-shadow: var(--shadow-fab);
 
   .fab-text {
     font-size: 36px;
@@ -176,28 +232,28 @@ onMounted(() => {
 .sort-bar {
   display: flex;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-md);
 
   .sort-label {
-    font-size: 19px;
-    color: #555;
-    margin-right: 10px;
+    font-size: var(--font-sm);
+    color: var(--color-text-secondary);
+    margin-right: var(--spacing-sm);
   }
 
   .sort-tabs {
     display: flex;
-    gap: 10px;
+    gap: var(--spacing-sm);
   }
 
   .sort-tab {
-    font-size: 20px;
-    color: #888;
+    font-size: var(--font-md);
+    color: var(--color-text-muted);
     padding: 6px 16px;
-    border-radius: 16px;
-    background: #e8e8e8;
+    border-radius: var(--radius-lg);
+    background: var(--color-card);
 
     &.active {
-      background: #4a90e2;
+      background: var(--color-primary);
       color: #fff;
     }
   }
@@ -205,56 +261,61 @@ onMounted(() => {
 
 .list {
   .list-title {
-    font-size: 26px;
+    font-size: var(--font-lg);
     font-weight: bold;
-    color: #333;
-    margin-bottom: 16px;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-md);
     display: block;
   }
 
   .empty {
     text-align: center;
-    color: #999;
-    font-size: 20px;
+    color: var(--color-text-muted);
+    font-size: var(--font-md);
     padding: 80px 0;
   }
 }
 
 .card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 18px;
-  margin-bottom: 14px;
+  background: var(--color-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
 
   .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: var(--spacing-sm);
 
     .card-title {
-      font-size: 26px;
+      font-size: var(--font-lg);
       font-weight: 600;
-      color: #333;
+      color: var(--color-text);
+      flex: 1;
+      margin-right: var(--spacing-sm);
     }
 
     .card-status {
-      font-size: 26px;
-      padding: 3px 10px;
+      font-size: var(--font-xs);
+      padding: 4px 12px;
       border-radius: 10px;
+      white-space: nowrap;
 
-      &.status-pending { background: #fff3e0; color: #e67e22; }
-      &.status-approved { background: #e8f5e9; color: #27ae60; }
-      &.status-implemented { background: #e3f2fd; color: #2980b9; }
-      &.status-rejected { background: #fce4ec; color: #c0392b; }
+      &.status-pending { background: var(--color-status-pending-bg); color: var(--color-warning); }
+      &.status-approved { background: var(--color-status-approved-bg); color: var(--color-success); }
+      &.status-implementing { background: var(--color-status-implementing-bg); color: var(--color-info); }
+      &.status-implemented { background: var(--color-status-implemented-bg); color: var(--color-success); }
+      &.status-rejected { background: var(--color-status-rejected-bg); color: var(--color-danger); }
     }
   }
 
   .card-desc {
     display: block;
-    font-size: 19px;
-    color: #555;
-    margin-bottom: 12px;
+    font-size: var(--font-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-sm);
     line-height: 1.5;
   }
 
@@ -262,47 +323,47 @@ onMounted(() => {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: var(--spacing-sm);
 
     .tag {
-      font-size: 19px;
+      font-size: var(--font-xs);
       background: #f0f4ff;
-      color: #4a90e2;
-      padding: 3px 12px;
-      border-radius: 12px;
+      color: var(--color-primary);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-sm);
     }
 
     .card-time {
-      font-size: 19px;
-      color: #999;
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
     }
   }
 
   .vote-bar {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding-top: 12px;
-    border-top: 1px solid #f0f0f0;
+    gap: var(--spacing-sm);
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid var(--color-border);
 
     .vote-btn {
-      font-size: 26px;
+      font-size: var(--font-md);
       padding: 6px 16px;
-      border-radius: 18px;
-      background: #fff3f3;
-      color: #e74c3c;
+      border-radius: var(--radius-lg);
+      background: var(--color-vote-bg);
+      color: var(--color-vote);
       border: 1px solid #fdd;
       line-height: 1.5;
 
       &.voted {
         background: #fdeaea;
-        color: #c0392b;
+        color: var(--color-danger);
       }
     }
 
     .vote-hint {
-      font-size: 19px;
-      color: #aaa;
+      font-size: var(--font-sm);
+      color: var(--color-text-muted);
     }
   }
 }

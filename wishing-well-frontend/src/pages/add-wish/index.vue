@@ -80,8 +80,8 @@ onMounted(() => {
 
 <style lang="scss">
 .page {
-  padding: 24px 16px;
-  background: #f5f5f5;
+  padding: var(--spacing-lg) var(--spacing-md);
+  background: var(--color-bg);
   min-height: 100vh;
 }
 
@@ -89,46 +89,48 @@ onMounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: var(--spacing-lg);
 
   .title {
-    font-size: 36px;
+    font-size: var(--font-xl);
     font-weight: bold;
-    color: #333;
+    color: var(--color-text);
   }
 
   .header-right {
     .lang-btn {
-      font-size: 20px;
-      color: #4a90e2;
+      font-size: var(--font-sm);
+      color: var(--color-primary);
       padding: 4px 12px;
-      border: 1px solid #4a90e2;
-      border-radius: 14px;
+      border: 1px solid var(--color-primary);
+      border-radius: var(--radius-md);
+      background: var(--color-card);
     }
   }
 }
 
 .form {
-  background: #fff;
-  border-radius: 12px;
-  padding: 16px;
+  background: var(--color-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-md);
 
   .input {
-    border: 1px solid #eee;
-    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
     padding: 10px 12px;
-    font-size: 20px;
-    margin-bottom: 10px;
+    font-size: var(--font-md);
+    margin-bottom: var(--spacing-sm);
     width: 100%;
     box-sizing: border-box;
   }
 
   .textarea {
-    border: 1px solid #eee;
-    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
     padding: 10px 12px;
-    font-size: 20px;
-    margin-bottom: 10px;
+    font-size: var(--font-md);
+    margin-bottom: var(--spacing-sm);
     width: 100%;
     box-sizing: border-box;
     height: 120px;
@@ -137,50 +139,54 @@ onMounted(() => {
 
   .row {
     display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
 
     .picker {
       flex: 1;
-      border: 1px solid #eee;
-      border-radius: 8px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
       padding: 10px 12px;
-      font-size: 20px;
-      background: #fff;
+      font-size: var(--font-md);
+      background: var(--color-card);
 
       .picker-text {
-        color: #999;
+        color: var(--color-text-muted);
       }
     }
 
     .input-small {
       flex: 1;
-      border: 1px solid #eee;
-      border-radius: 8px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
       padding: 10px 12px;
-      font-size: 20px;
+      font-size: var(--font-md);
     }
   }
 
   .btn-primary {
     width: 100%;
-    background: #4a90e2;
+    background: var(--color-primary);
     color: #fff;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     padding: 12px;
-    font-size: 26px;
+    font-size: var(--font-lg);
     border: none;
-    margin-bottom: 10px;
+    margin-bottom: var(--spacing-sm);
+
+    &:active {
+      background: var(--color-primary-dark);
+    }
   }
 
   .btn-secondary {
     width: 100%;
-    background: #fff;
-    color: #666;
-    border-radius: 8px;
+    background: var(--color-card);
+    color: var(--color-text-secondary);
+    border-radius: var(--radius-sm);
     padding: 12px;
-    font-size: 26px;
-    border: 1px solid #ddd;
+    font-size: var(--font-lg);
+    border: 1px solid var(--color-border);
   }
 }
 </style>

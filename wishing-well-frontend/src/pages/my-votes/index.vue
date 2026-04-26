@@ -82,25 +82,26 @@ useDidShow(() => {
 
 <style lang="scss">
 .page {
-  padding: 24px 16px;
-  background: #f5f5f5;
+  padding: var(--spacing-lg) var(--spacing-md);
+  background: var(--color-bg);
   min-height: 100vh;
 }
 
 .header {
-  margin-bottom: 24px;
+  margin-bottom: var(--spacing-lg);
 
   .title {
-    font-size: 36px;
+    font-size: var(--font-xl);
     font-weight: bold;
-    color: #333;
+    color: var(--color-text);
   }
 }
 
 .list {
   .empty {
     text-align: center;
-    color: #999;
+    color: var(--color-text-muted);
+    font-size: var(--font-md);
     padding: 40px 0;
   }
 }
@@ -113,85 +114,94 @@ useDidShow(() => {
   padding: 80px 20px;
 
   .login-text {
-    font-size: 20px;
-    color: #666;
-    margin-bottom: 20px;
+    font-size: var(--font-md);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-md);
   }
 
   .login-btn {
-    background: #4a90e2;
+    background: var(--color-primary);
     color: #fff;
-    font-size: 18px;
+    font-size: var(--font-sm);
     padding: 12px 32px;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     border: none;
+
+    &:active {
+      background: var(--color-primary-dark);
+    }
   }
 }
 
 .card {
-  background: #fff;
-  border-radius: 10px;
-  padding: 14px;
-  margin-bottom: 10px;
+  background: var(--color-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
 
   .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 6px;
+    margin-bottom: var(--spacing-xs);
 
     .card-title {
-      font-size: 26px;
+      font-size: var(--font-lg);
       font-weight: 600;
-      color: #333;
+      color: var(--color-text);
+      flex: 1;
+      margin-right: var(--spacing-sm);
     }
 
     .card-status {
-      font-size: 26px;
-      padding: 2px 8px;
+      font-size: var(--font-xs);
+      padding: 4px 12px;
       border-radius: 10px;
+      white-space: nowrap;
 
-      &.status-pending { background: #fff3e0; color: #e67e22; }
-      &.status-approved { background: #e8f5e9; color: #27ae60; }
-      &.status-implemented { background: #e3f2fd; color: #2980b9; }
-      &.status-rejected { background: #fce4ec; color: #c0392b; }
+      &.status-pending { background: var(--color-status-pending-bg); color: var(--color-warning); }
+      &.status-approved { background: var(--color-status-approved-bg); color: var(--color-success); }
+      &.status-implementing { background: var(--color-status-implementing-bg); color: var(--color-info); }
+      &.status-implemented { background: var(--color-status-implemented-bg); color: var(--color-success); }
+      &.status-rejected { background: var(--color-status-rejected-bg); color: var(--color-danger); }
     }
   }
 
   .card-desc {
     display: block;
-    font-size: 20px;
-    color: #666;
-    margin-bottom: 8px;
+    font-size: var(--font-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-sm);
   }
 
   .card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: var(--spacing-sm);
 
     .tag {
-      font-size: 26px;
+      font-size: var(--font-xs);
       background: #f0f4ff;
-      color: #4a90e2;
-      padding: 2px 8px;
-      border-radius: 6px;
+      color: var(--color-primary);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-sm);
     }
 
     .card-time {
-      font-size: 26px;
-      color: #bbb;
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
     }
   }
 
   .vote-bar {
-    padding-top: 8px;
-    border-top: 1px solid #f0f0f0;
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid var(--color-border);
 
     .voted-badge {
-      font-size: 20px;
-      color: #c0392b;
+      font-size: var(--font-sm);
+      color: var(--color-danger);
     }
   }
 }

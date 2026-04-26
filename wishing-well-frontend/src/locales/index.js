@@ -26,13 +26,14 @@ const messages = {
     },
     list: {
       title: '愿望列表',
-      empty: '暂无愿望，来写下第一个吧',
+      empty: '📭 暂无愿望，来写下第一个吧',
     },
     status: {
-      pending: '待审核',
-      approved: '已采纳',
-      implemented: '已实现',
-      rejected: '已拒绝',
+      pending: '✏️ 待审核',
+      approved: '✅ 已采纳',
+      implementing: '🚀 开发中',
+      implemented: '🎉 已实现',
+      rejected: '❌ 已拒绝',
     },
     vote: {
       support: '支持一下',
@@ -48,15 +49,15 @@ const messages = {
     },
     myWishes: {
       title: '我的愿望',
-      empty: '您还没有提交过愿望',
+      empty: '✨ 您还没有提交过愿望',
     },
     myVotes: {
       title: '我的投票',
-      empty: '您还没有支持过任何愿望',
+      empty: '❤️ 您还没有支持过任何愿望',
     },
     categories: {
       title: '分类浏览',
-      empty: '该分类下暂无愿望',
+      empty: '🏷️ 该分类下暂无愿望',
     },
     profile: {
       title: '我的',
@@ -95,13 +96,14 @@ const messages = {
     },
     list: {
       title: 'Wish List',
-      empty: 'No wishes yet, be the first to submit!',
+      empty: '📭 No wishes yet, be the first to submit!',
     },
     status: {
-      pending: 'Pending',
-      approved: 'Approved',
-      implemented: 'Implemented',
-      rejected: 'Rejected',
+      pending: '✏️ Pending',
+      approved: '✅ Approved',
+      implementing: '🚀 Implementing',
+      implemented: '🎉 Implemented',
+      rejected: '❌ Rejected',
     },
     vote: {
       support: 'Support',
@@ -117,15 +119,15 @@ const messages = {
     },
     myWishes: {
       title: 'My Wishes',
-      empty: 'You have not submitted any wishes yet',
+      empty: '✨ You have not submitted any wishes yet',
     },
     myVotes: {
       title: 'My Votes',
-      empty: 'You have not supported any wishes yet',
+      empty: '❤️ You have not supported any wishes yet',
     },
     categories: {
       title: 'Categories',
-      empty: 'No wishes in this category',
+      empty: '🏷️ No wishes in this category',
     },
     profile: {
       title: 'Profile',

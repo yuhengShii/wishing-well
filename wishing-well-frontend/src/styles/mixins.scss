@@ -1,0 +1,89 @@
+/* 共享样式 Mixins */
+
+/* 卡片基础样式 */
+@mixin card {
+  background: var(--color-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.2s ease;
+
+  &:active {
+    box-shadow: var(--shadow-hover);
+  }
+}
+
+/* 主按钮 */
+@mixin btn-primary {
+  width: 100%;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  font-size: var(--font-lg);
+  border: none;
+  margin-bottom: var(--spacing-sm);
+
+  &:active {
+    background: var(--color-primary-dark);
+  }
+}
+
+/* 次按钮 */
+@mixin btn-secondary {
+  width: 100%;
+  background: var(--color-card);
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  font-size: var(--font-lg);
+  border: 1px solid var(--color-border);
+}
+
+/* 标签 */
+@mixin tag {
+  font-size: var(--font-xs);
+  background: #f0f4ff;
+  color: var(--color-primary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+}
+
+/* 状态徽章 */
+@mixin status-badge($bg, $color) {
+  font-size: var(--font-xs);
+  padding: 3px 10px;
+  border-radius: 10px;
+  background: $bg;
+  color: $color;
+}
+
+/* 页面容器 */
+@mixin page {
+  padding: var(--spacing-lg) var(--spacing-md);
+  background: var(--color-bg);
+  min-height: 100vh;
+}
+
+/* 空状态 */
+@mixin empty {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--font-md);
+  padding: 80px 0;
+}
+
+/* 投票按钮 */
+@mixin vote-btn {
+  font-size: var(--font-lg);
+  padding: 6px 16px;
+  border-radius: 18px;
+  background: var(--color-vote-bg);
+  color: var(--color-vote);
+  border: 1px solid #fdd;
+  line-height: 1.5;
+
+  &.voted {
+    background: #fdeaea;
+    color: var(--color-danger);
+  }
+}
