@@ -14,6 +14,9 @@
 4. **功能或 Bug 修复验证通过后，立即 commit**
    每完成一个功能点，或修复一个 Bug 并验证通过后，应该尽快 commit，不要等到多个功能完成后再批量提交。保持提交的原子性，一个 commit 对应一个完整的可工作增量。
 
+5. **代码完成后必须通过 lint 检查**
+   后端和前端代码写完后，必须分别运行 lint 并修复所有错误后才能提交。
+
 ## 说明
 
 此规则适用于整个项目的开发阶段。规则的核心目的是避免范围蔓延和半成品堆积，确保每个功能独立验证通过后，再积累可工作的增量。
@@ -30,42 +33,50 @@
 # 1. 单元测试全过
 cd backend && .\.venv\Scripts\python -m pytest app/tests/ -v
 
-# 2. 服务能正常启动
+# 2. Lint 检查通过
+cd backend && .\.venv\Scripts\python -m ruff check app/
+
+# 3. 服务能正常启动
 cd backend && .\.venv\Scripts\python -m uvicorn app.main:app --reload --port 8000
 
-# 3. API 实际调用能通
+# 4. API 实际调用能通
 curl http://127.0.0.1:8000/wishes/
 ```
 
 ### 前端验证
 
 ```bash
-# 4. Taro 编译不报错
+# 5. Lint 检查通过
+cd wishing-well-frontend && npm run lint
+
+# 6. Taro 编译不报错
 cd wishing-well-frontend && npm run dev:weapp
 
-# 5. dist/ 目录有输出文件
+# 7. dist/ 目录有输出文件
 ```
 
 ### 前后端联调测试（必须）
 
 ```bash
-# 6. 启动后端（确认端口未被占用）
+# 8. 启动后端（确认端口未被占用）
 cd backend && .\.venv\Scripts\python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
 
-# 7. 前端构建
+# 9. 前端构建
 cd wishing-well-frontend && npm run dev:weapp
 
-# 8. 用微信开发者工具导入 dist 目录，验证功能流程
+# 10. 用微信开发者工具导入 dist 目录，验证功能流程
 ```
 
 ### 判断标准
 
 **必须同时满足**：
 1. pytest 全过
-2. Taro 编译成功
-3. 后端 API 实际返回数据（curl 验证）
+2. ruff check 全过
+3. npm run lint 全过
+4. Taro 编译成功
+5. 后端 API 实际返回数据（curl 验证）
 
-三步全部通过才视为该功能点完成，可进行 commit。
+五步全部通过才视为该功能点完成，可进行 commit。
 
 ---
 
