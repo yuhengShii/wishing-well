@@ -138,7 +138,7 @@ onMounted(() => {
   position: fixed;
   top: 24px;
   right: 16px;
-  font-size: 13px;
+  font-size: 19px;
   color: #4a90e2;
   padding: 6px 14px;
   border: 1px solid #4a90e2;
@@ -160,7 +160,7 @@ onMounted(() => {
   box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
 
   .fab-text {
-    font-size: 30px;
+    font-size: 36px;
     color: #fff;
     font-weight: 300;
   }
@@ -172,7 +172,7 @@ onMounted(() => {
   margin-bottom: 16px;
 
   .sort-label {
-    font-size: 16px;
+    font-size: 19px;
     color: #555;
     margin-right: 10px;
   }
@@ -183,7 +183,7 @@ onMounted(() => {
   }
 
   .sort-tab {
-    font-size: 14px;
+    font-size: 20px;
     color: #888;
     padding: 6px 16px;
     border-radius: 16px;
@@ -198,7 +198,7 @@ onMounted(() => {
 
 .list {
   .list-title {
-    font-size: 22px;
+    font-size: 26px;
     font-weight: bold;
     color: #333;
     margin-bottom: 16px;
@@ -208,7 +208,7 @@ onMounted(() => {
   .empty {
     text-align: center;
     color: #999;
-    font-size: 17px;
+    font-size: 20px;
     padding: 80px 0;
   }
 }
@@ -226,13 +226,13 @@ onMounted(() => {
     margin-bottom: 10px;
 
     .card-title {
-      font-size: 18px;
+      font-size: 26px;
       font-weight: 600;
       color: #333;
     }
 
     .card-status {
-      font-size: 12px;
+      font-size: 26px;
       padding: 3px 10px;
       border-radius: 10px;
 
@@ -245,7 +245,7 @@ onMounted(() => {
 
   .card-desc {
     display: block;
-    font-size: 16px;
+    font-size: 19px;
     color: #555;
     margin-bottom: 12px;
     line-height: 1.5;
@@ -258,7 +258,7 @@ onMounted(() => {
     margin-bottom: 10px;
 
     .tag {
-      font-size: 13px;
+      font-size: 19px;
       background: #f0f4ff;
       color: #4a90e2;
       padding: 3px 12px;
@@ -266,7 +266,7 @@ onMounted(() => {
     }
 
     .card-time {
-      font-size: 13px;
+      font-size: 19px;
       color: #999;
     }
   }
@@ -279,7 +279,7 @@ onMounted(() => {
     border-top: 1px solid #f0f0f0;
 
     .vote-btn {
-      font-size: 15px;
+      font-size: 26px;
       padding: 6px 16px;
       border-radius: 18px;
       background: #fff3f3;
@@ -294,7 +294,7 @@ onMounted(() => {
     }
 
     .vote-hint {
-      font-size: 13px;
+      font-size: 19px;
       color: #aaa;
     }
   }

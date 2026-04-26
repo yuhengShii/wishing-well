@@ -76,7 +76,7 @@ useDidShow(() => {
   margin-bottom: 24px;
 
   .title {
-    font-size: 24px;
+    font-size: 36px;
     font-weight: bold;
     color: #333;
   }
@@ -103,13 +103,13 @@ useDidShow(() => {
     margin-bottom: 6px;
 
     .card-title {
-      font-size: 16px;
+      font-size: 26px;
       font-weight: 600;
       color: #333;
     }
 
     .card-status {
-      font-size: 12px;
+      font-size: 26px;
       padding: 2px 8px;
       border-radius: 10px;
 
@@ -122,7 +122,7 @@ useDidShow(() => {
 
   .card-desc {
     display: block;
-    font-size: 14px;
+    font-size: 20px;
     color: #666;
     margin-bottom: 8px;
   }
@@ -134,7 +134,7 @@ useDidShow(() => {
     margin-bottom: 8px;
 
     .tag {
-      font-size: 12px;
+      font-size: 26px;
       background: #f0f4ff;
       color: #4a90e2;
       padding: 2px 8px;
@@ -142,7 +142,7 @@ useDidShow(() => {
     }
 
     .card-time {
-      font-size: 12px;
+      font-size: 26px;
       color: #bbb;
     }
   }
@@ -152,7 +152,7 @@ useDidShow(() => {
     border-top: 1px solid #f0f0f0;
 
     .vote-count {
-      font-size: 14px;
+      font-size: 20px;
       color: #e74c3c;
     }
   }

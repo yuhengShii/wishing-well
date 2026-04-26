@@ -136,8 +136,8 @@
 - [x] 新增 pages/my-votes/ 页面
 - [x] 新增 pages/categories/ 页面
 - [x] 新增 pages/profile/ 页面
-- [ ] 新增 pages/add-wish/ 页面
-- [ ] TabBar 中间加号按钮
+- [x] 新增 pages/add-wish/ 页面
+- [x] TabBar 中间加号按钮（浮动 FAB 样式，首页右下角）
 - [ ] 新增 pages/my-votes/ 页面
 - [ ] 新增 pages/categories/ 页面
 - [ ] 新增 pages/profile/ 页面

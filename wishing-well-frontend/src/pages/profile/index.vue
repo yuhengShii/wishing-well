@@ -79,7 +79,7 @@ useDidShow(() => {
   margin-bottom: 24px;
 
   .title {
-    font-size: 24px;
+    font-size: 36px;
     font-weight: bold;
     color: #333;
   }
@@ -104,7 +104,7 @@ useDidShow(() => {
     margin-right: 16px;
 
     .avatar-text {
-      font-size: 24px;
+      font-size: 36px;
       color: #fff;
     }
   }
@@ -114,14 +114,14 @@ useDidShow(() => {
 
     .nickname {
       display: block;
-      font-size: 18px;
+      font-size: 26px;
       font-weight: 600;
       color: #333;
       margin-bottom: 4px;
     }
 
     .user-id {
-      font-size: 12px;
+      font-size: 26px;
       color: #999;
     }
   }
@@ -140,14 +140,14 @@ useDidShow(() => {
 
     .stat-value {
       display: block;
-      font-size: 24px;
+      font-size: 36px;
       font-weight: bold;
       color: #4a90e2;
       margin-bottom: 4px;
     }
 
     .stat-label {
-      font-size: 12px;
+      font-size: 26px;
       color: #999;
     }
   }
@@ -170,12 +170,12 @@ useDidShow(() => {
     }
 
     .setting-label {
-      font-size: 16px;
+      font-size: 26px;
       color: #333;
     }
 
     .setting-value {
-      font-size: 14px;
+      font-size: 20px;
       color: #999;
     }
   }

@@ -92,14 +92,14 @@ onMounted(() => {
   margin-bottom: 24px;
 
   .title {
-    font-size: 24px;
+    font-size: 36px;
     font-weight: bold;
     color: #333;
   }
 
   .header-right {
     .lang-btn {
-      font-size: 14px;
+      font-size: 20px;
       color: #4a90e2;
       padding: 4px 12px;
       border: 1px solid #4a90e2;
@@ -117,7 +117,7 @@ onMounted(() => {
     border: 1px solid #eee;
     border-radius: 8px;
     padding: 10px 12px;
-    font-size: 15px;
+    font-size: 20px;
     margin-bottom: 10px;
     width: 100%;
     box-sizing: border-box;
@@ -127,7 +127,7 @@ onMounted(() => {
     border: 1px solid #eee;
     border-radius: 8px;
     padding: 10px 12px;
-    font-size: 15px;
+    font-size: 20px;
     margin-bottom: 10px;
     width: 100%;
     box-sizing: border-box;
@@ -145,7 +145,7 @@ onMounted(() => {
       border: 1px solid #eee;
       border-radius: 8px;
       padding: 10px 12px;
-      font-size: 15px;
+      font-size: 20px;
       background: #fff;
 
       .picker-text {
@@ -158,7 +158,7 @@ onMounted(() => {
       border: 1px solid #eee;
       border-radius: 8px;
       padding: 10px 12px;
-      font-size: 15px;
+      font-size: 20px;
     }
   }
 
@@ -168,7 +168,7 @@ onMounted(() => {
     color: #fff;
     border-radius: 8px;
     padding: 12px;
-    font-size: 16px;
+    font-size: 26px;
     border: none;
     margin-bottom: 10px;
   }
@@ -179,7 +179,7 @@ onMounted(() => {
     color: #666;
     border-radius: 8px;
     padding: 12px;
-    font-size: 16px;
+    font-size: 26px;
     border: 1px solid #ddd;
   }
 }

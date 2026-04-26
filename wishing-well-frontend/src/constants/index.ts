@@ -1,5 +1,5 @@
 /** API 基础地址（开发环境使用本地后端）*/
-export const baseUrl = "http://127.0.0.1:8000";
+export const baseUrl = "http://192.168.3.187:8000";
 
 /** 愿望状态中文映射 */
 export const statusMap = {
