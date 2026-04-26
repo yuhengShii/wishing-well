@@ -1,6 +1,6 @@
+
 from fastapi import Depends, HTTPException, Request
 from sqlalchemy.orm import Session
-from typing import Optional
 
 from ..database import get_db
 from ..models import User
@@ -14,7 +14,7 @@ def set_token_user(token: str, user_id: int):
     token_cache[token] = user_id
 
 
-def get_user_id_by_token(token: str) -> Optional[int]:
+def get_user_id_by_token(token: str) -> int | None:
     """根据 token 获取 user_id"""
     return token_cache.get(token)
 

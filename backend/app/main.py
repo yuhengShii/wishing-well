@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from .database import Base, engine
-from .routers import wishes, votes, auth
+from .routers import auth, votes, wishes
 
 Base.metadata.create_all(bind=engine)
 

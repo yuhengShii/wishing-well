@@ -4,10 +4,10 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
-from app.main import app
-from app.database import Base, get_db
-from app.models import User
 from app.core.auth import set_token_user
+from app.database import Base, get_db
+from app.main import app
+from app.models import User
 
 TEST_ENGINE = create_engine(
     "sqlite:///:memory:",
@@ -159,7 +159,7 @@ class TestVotesAPI:
         set_token_user("sort_token2", user2.id)
         db.close()
 
-        id1 = _create_wish(client, "愿望A")
+        _create_wish(client, "愿望A")
         id2 = _create_wish(client, "愿望B")
         id3 = _create_wish(client, "愿望C")
 

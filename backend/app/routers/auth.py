@@ -1,12 +1,13 @@
-from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
-import httpx
 import secrets
 
+import httpx
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
+
+from ..core.auth import set_token_user
+from ..core.config import settings
 from ..database import get_db
 from ..models import User
-from ..core.config import settings
-from ..core.auth import set_token_user
 
 router = APIRouter(prefix="/auth", tags=["认证"])
 
@@ -43,7 +44,7 @@ def login(code: str, db: Session = Depends(get_db)):
                 timeout=10.0,
             ).json()
     except Exception as e:
-        raise HTTPException(status_code=503, detail=f"微信接口调用失败: {str(e)}")
+        raise HTTPException(status_code=503, detail=f"微信接口调用失败: {str(e)}") from None
 
     if "errcode" in wechat_data:
         raise HTTPException(

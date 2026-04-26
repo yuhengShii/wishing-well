@@ -1,6 +1,6 @@
 import { reactive } from "vue";
 import { login as loginApi, logout as logoutApi } from "../api/auth";
-import { getToken, getUserInfo, setUserInfo, removeToken } from "../utils/auth";
+import { getToken, getUserInfo, setUserInfo } from "../utils/auth";
 import Taro from "@tarojs/taro";
 import { t } from "../locales";
 
@@ -32,9 +32,10 @@ export async function login(): Promise<boolean> {
     Taro.hideLoading();
     Taro.showToast({ title: t("auth.loginSuccess"), icon: "success" });
     return true;
-  } catch (e: any) {
+  } catch (e: unknown) {
     Taro.hideLoading();
-    Taro.showToast({ title: e.message || t("auth.loginFailed"), icon: "none" });
+    const err = e as Error;
+    Taro.showToast({ title: err.message || t("auth.loginFailed"), icon: "none" });
     return false;
   }
 }

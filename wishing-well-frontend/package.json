@@ -6,7 +6,8 @@
     "dev:weapp": "taro build --type weapp && node scripts/fix-project-config.js",
     "build:weapp": "taro build --type weapp --watch",
     "doctor": "taro doctor",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint src/ --max-warnings 0"
   },
   "dependencies": {
     "@tarojs/components": "4.x",
@@ -30,10 +31,13 @@
     "@tarojs/cli": "4.x",
     "@tarojs/webpack5-runner": "4.x",
     "@types/jest": "^30.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.59.0",
+    "@typescript-eslint/parser": "^8.59.0",
     "@vue/compiler-sfc": "^3.4.0",
     "babel-jest": "^30.3.0",
     "babel-plugin-import": "^1.13.8",
     "css-loader": "^6.10.0",
+    "eslint": "^8.57.1",
     "jest": "^30.3.0",
     "sass": "^1.77.0",
     "sass-loader": "^13.3.3",

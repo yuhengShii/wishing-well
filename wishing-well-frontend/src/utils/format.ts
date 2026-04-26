@@ -17,7 +17,7 @@ export function truncate(text: string, maxLength = 50): string {
 /**
  * 防抖函数
  */
-export function debounce<T extends (...args: any[]) => any>(
+export function debounce<T extends (...args: unknown[]) => unknown>(
   fn: T,
   delay = 300
 ): (...args: Parameters<T>) => void {

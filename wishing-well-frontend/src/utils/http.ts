@@ -5,7 +5,7 @@ import { getToken } from "./auth";
 interface RequestOptions {
   url: string;
   method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
-  data?: any;
+  data?: unknown;
   header?: Record<string, string>;
 }
 

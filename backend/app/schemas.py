@@ -1,14 +1,14 @@
-from pydantic import BaseModel
 from datetime import datetime
-from typing import Optional
+
+from pydantic import BaseModel
 
 
 class WishBase(BaseModel):
     title: str
-    description: Optional[str] = None
-    category: Optional[str] = None
+    description: str | None = None
+    category: str | None = None
     priority: int = 0
-    contact: Optional[str] = None
+    contact: str | None = None
 
 
 class WishCreate(WishBase):
@@ -16,12 +16,12 @@ class WishCreate(WishBase):
 
 
 class WishUpdate(BaseModel):
-    title: Optional[str] = None
-    description: Optional[str] = None
-    category: Optional[str] = None
-    priority: Optional[int] = None
-    status: Optional[str] = None
-    contact: Optional[str] = None
+    title: str | None = None
+    description: str | None = None
+    category: str | None = None
+    priority: int | None = None
+    status: str | None = None
+    contact: str | None = None
 
 
 class WishResponse(WishBase):
@@ -29,7 +29,7 @@ class WishResponse(WishBase):
     status: str
     vote_count: int
     created_at: datetime
-    updated_at: Optional[datetime] = None
+    updated_at: datetime | None = None
 
     class Config:
         from_attributes = True
@@ -37,8 +37,8 @@ class WishResponse(WishBase):
 
 class UserBase(BaseModel):
     openid: str
-    nickname: Optional[str] = None
-    avatar_url: Optional[str] = None
+    nickname: str | None = None
+    avatar_url: str | None = None
 
 
 class UserCreate(UserBase):
@@ -48,7 +48,7 @@ class UserCreate(UserBase):
 class UserResponse(UserBase):
     id: int
     created_at: datetime
-    last_login_at: Optional[datetime] = None
+    last_login_at: datetime | None = None
 
     class Config:
         from_attributes = True

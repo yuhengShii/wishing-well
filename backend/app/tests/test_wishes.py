@@ -4,8 +4,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
-from app.main import app
 from app.database import Base, get_db
+from app.main import app
 
 # 测试专用数据库（内存 SQLite，速度快且互不干扰）
 TEST_ENGINE = create_engine(
