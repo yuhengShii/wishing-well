@@ -116,6 +116,9 @@ yarn-error.log*
 # Claude Code
 .claude/
 
+# WeChat Mini Program build output
+wishing-well-frontend/dist/
+
 # Misc
 .DS_Store
 Thumbs.db
