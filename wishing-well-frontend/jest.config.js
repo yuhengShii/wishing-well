@@ -1,12 +1,12 @@
 module.exports = {
-  preset: "@tarojs/mini-runner",
-  testEnvironment: "node",
-  testMatch: ["**/tests/**/*.test.ts"],
-  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json"],
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  testMatch: ['**/tests/**/*.test.ts'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   transform: {
-    "^.+\\.tsx?$": "babel-jest",
+    '^.+\\.tsx?$': ['ts-jest', { useESM: false }],
   },
   moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/src/$1",
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
 };
