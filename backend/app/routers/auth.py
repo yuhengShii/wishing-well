@@ -30,16 +30,17 @@ def login(code: str, db: Session = Depends(get_db)):
         raise HTTPException(status_code=500, detail="微信配置未设置，请检查环境变量 WECHAT_APPID 和 WECHAT_APPSECRET")
 
     try:
-        wechat_data = httpx.SyncClient().get(
-            WECHAT_API_URL,
-            params={
-                "appid": settings.WECHAT_APPID,
-                "secret": settings.WECHAT_APPSECRET,
-                "js_code": code,
-                "grant_type": "authorization_code",
-            },
-            timeout=10.0,
-        ).json()
+        with httpx.Client() as client:
+            wechat_data = client.get(
+                WECHAT_API_URL,
+                params={
+                    "appid": settings.WECHAT_APPID,
+                    "secret": settings.WECHAT_APPSECRET,
+                    "js_code": code,
+                    "grant_type": "authorization_code",
+                },
+                timeout=10.0,
+            ).json()
     except Exception as e:
         raise HTTPException(status_code=503, detail=f"微信接口调用失败: {str(e)}")
 
