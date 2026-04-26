@@ -67,6 +67,7 @@ const messages = {
     },
     auth: {
       loginRequired: '请先登录后操作',
+      loginBtn: '微信登录',
       logining: '登录中...',
       loginFailed: '登录失败',
       loginSuccess: '登录成功',
@@ -135,6 +136,7 @@ const messages = {
     },
     auth: {
       loginRequired: 'Please login first',
+      loginBtn: 'WeChat Login',
       logining: 'Logging in...',
       loginFailed: 'Login failed',
       loginSuccess: 'Login successful',

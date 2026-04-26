@@ -4,7 +4,14 @@
       <text class="title">{{ t('myWishes.title') }}</text>
     </view>
 
-    <view class="list">
+    <!-- 未登录提示 -->
+    <view v-if="!authState.isLoggedIn" class="login-prompt">
+      <text class="login-text">{{ t('auth.loginRequired') }}</text>
+      <button class="login-btn" @tap="goToLogin">{{ t('auth.loginBtn') }}</button>
+    </view>
+
+    <!-- 愿望列表 -->
+    <view v-else class="list">
       <view v-if="myWishes.length === 0" class="empty">{{ t('myWishes.empty') }}</view>
       <view v-for="wish in myWishes" :key="wish.id" class="card">
         <view class="card-header">
@@ -31,13 +38,22 @@ import { ref, onMounted } from "vue";
 import Taro, { useDidShow } from "@tarojs/taro";
 import { wishApi } from "../../api/wish";
 import { t, localeState } from "../../locales";
+import { initAuthState, authState, login } from "../../stores/auth";
 
 const myWishes = ref([]);
 
-// 强制刷新页面
+async function goToLogin() {
+  await login();
+  if (authState.isLoggedIn) {
+    refreshPage();
+  }
+}
+
 function refreshPage() {
-  myWishes.value = [];
-  fetchMyWishes();
+  if (authState.isLoggedIn) {
+    myWishes.value = [];
+    fetchMyWishes();
+  }
 }
 
 async function fetchMyWishes() {
@@ -54,13 +70,12 @@ function formatTime(time) {
 }
 
 onMounted(() => {
-  fetchMyWishes();
+  initAuthState();
+  refreshPage();
 });
 
-// 每次页面显示时刷新（解决 tabBar 切换不重新渲染问题）
 useDidShow(() => {
-  // 引用 localeState 触发依赖
-  const _ = localeState.locale;
+  initAuthState();
   refreshPage();
 });
 </script>
@@ -87,6 +102,29 @@ useDidShow(() => {
     text-align: center;
     color: #999;
     padding: 40px 0;
+  }
+}
+
+.login-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+
+  .login-text {
+    font-size: 20px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+
+  .login-btn {
+    background: #4a90e2;
+    color: #fff;
+    font-size: 18px;
+    padding: 12px 32px;
+    border-radius: 8px;
+    border: none;
   }
 }
 

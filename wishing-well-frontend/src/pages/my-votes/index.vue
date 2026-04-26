@@ -4,7 +4,14 @@
       <text class="title">{{ t('myVotes.title') }}</text>
     </view>
 
-    <view class="list">
+    <!-- 未登录提示 -->
+    <view v-if="!authState.isLoggedIn" class="login-prompt">
+      <text class="login-text">{{ t('auth.loginRequired') }}</text>
+      <button class="login-btn" @tap="goToLogin">{{ t('auth.loginBtn') }}</button>
+    </view>
+
+    <!-- 投票列表 -->
+    <view v-else class="list">
       <view v-if="votedWishes.length === 0" class="empty">{{ t('myVotes.empty') }}</view>
       <view v-for="wish in votedWishes" :key="wish.id" class="card">
         <view class="card-header">
@@ -31,12 +38,22 @@ import { ref, onMounted } from "vue";
 import Taro, { useDidShow } from "@tarojs/taro";
 import { wishApi } from "../../api/wish";
 import { t, localeState } from "../../locales";
+import { initAuthState, authState, login } from "../../stores/auth";
 
 const votedWishes = ref([]);
 
+async function goToLogin() {
+  await login();
+  if (authState.isLoggedIn) {
+    refreshPage();
+  }
+}
+
 function refreshPage() {
-  votedWishes.value = [];
-  fetchVotedWishes();
+  if (authState.isLoggedIn) {
+    votedWishes.value = [];
+    fetchVotedWishes();
+  }
 }
 
 async function fetchVotedWishes() {
@@ -53,11 +70,12 @@ function formatTime(time) {
 }
 
 onMounted(() => {
-  fetchVotedWishes();
+  initAuthState();
+  refreshPage();
 });
 
 useDidShow(() => {
-  const _ = localeState.locale;
+  initAuthState();
   refreshPage();
 });
 </script>
@@ -84,6 +102,29 @@ useDidShow(() => {
     text-align: center;
     color: #999;
     padding: 40px 0;
+  }
+}
+
+.login-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+
+  .login-text {
+    font-size: 20px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+
+  .login-btn {
+    background: #4a90e2;
+    color: #fff;
+    font-size: 18px;
+    padding: 12px 32px;
+    border-radius: 8px;
+    border: none;
   }
 }
 
