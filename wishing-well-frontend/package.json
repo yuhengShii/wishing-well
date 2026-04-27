@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev:weapp": "taro build --type weapp && node scripts/fix-project-config.js",
-    "build:weapp": "taro build --type weapp --watch",
+    "build:weapp": "taro build --type weapp",
     "doctor": "taro doctor",
     "test": "jest",
     "lint": "eslint src/ --max-warnings 0"
